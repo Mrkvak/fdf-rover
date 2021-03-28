@@ -68,7 +68,7 @@ class CSV_Logger:
                 + str(packet.spm) + ", "
                 + str(packet.power) + ", "
                 + str(packet.distance) + ", "
-                + str(self.total_cals))
+                + str(self.total_cals), flush=True)
 
 
 

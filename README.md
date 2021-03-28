@@ -22,6 +22,10 @@ Installation and usage
 6. run `rover.py -d serial_port_from_step_4`
 7. it will output data in CSV format to standard out. To redirect to file, use: `rover.py -d serial_port_from_step_4 > file.csv`
 
+Example and data processing
+---------------
+
+
 License
 ---------------
 GPLv3. See LICENSE.md
