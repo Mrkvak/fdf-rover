@@ -1,0 +1,95 @@
+#!/usr/bin/env python3
+import datetime
+
+import sys
+import getopt
+
+from rover_io import *
+from rover_packet import *
+from debug_print import Debug
+
+class Keepalive_Responder:
+    def __init__(self, io):
+        self.io = io
+
+    def enable(self):
+        self.io.reader.add_listener(self)
+
+    def incoming_packet(self, packet):
+        if isinstance(packet, Keepalive_Request_Packet):
+            io.write_packet_async(Keepalive_Response_Packet())
+
+class CSV_Logger:
+    def __init__(self, io):
+        self.last_heart_rate = -1
+        self.last_level = -1
+        self.total_cals = 0
+        self.io = io
+
+    def enable(self):
+        self.io.reader.add_listener(self)
+        self.io.write_packet_sync(Level_Packet())
+        self.io.write_packet_sync(Heartrate_Packet())
+        print("\"time\", \"elapsed time\", \"level\", \"heartrate\", \"speed\", \"spm\", \"power\", \"distance\", \"cals\"")
+
+
+    def incoming_packet(self, packet):
+        if isinstance(packet, Heartrate_Packet):
+            self.last_heart_rate = packet.rate
+        if isinstance(packet, Level_Packet):
+            self.last_level = packet.level
+        if isinstance(packet, Stroke_Packet):
+            if packet.spm > 0:
+                self.total_cals += packet.cals / (60 * packet.spm)
+            print("\"" + str(datetime.datetime.now()) + "\", "
+                + str(packet.time) + ", "
+                + str(self.last_level) + ", "
+                + str(self.last_heart_rate) + ", "
+                + str(packet.speed) + ", "
+                + str(packet.spm) + ", "
+                + str(packet.power) + ", "
+                + str(packet.distance) + ", "
+                + str(self.total_cals))
+
+
+
+def print_help():
+    print("Usage: "+sys.argv[0]+" -s [/dev/ttyUSBn | COMx] [-d]" )
+    print("\t-d print debug messages to stderr")
+
+
+def main():
+    argv = sys.argv[1:]
+    port = None
+    try:
+        opts, args = getopt.getopt(argv, "s:hd")
+
+    except:
+        print("Getopt error!")
+
+    for opt, arg in opts:
+        if opt in ['-s']:
+            port = arg
+        if opt in ['-h']:
+            print_help()
+            return
+        if opt in ['-d']:
+            Debug.enabled = 1
+
+    if port is None:
+        print_help()
+        return
+    
+
+    io = Rover_IO(port)
+    io.start()
+
+    ka = Keepalive_Responder(io)
+    ka.enable()
+
+    csv_logger = CSV_Logger(io)
+    csv_logger.enable()
+
+
+if __name__ == '__main__':
+    main()
