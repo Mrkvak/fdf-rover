@@ -30,10 +30,10 @@ Usage:
 It will create several .png files (starting with `file-`).
 
 Example images (together with source .csv file) are provided:
-![Example chart - speed and SPM](/example/rower-2021-03-29.csv-speed-spm.png")
-![Example chart - SPM and power](/example/rower-2021-03-29.csv-spm-power.png")
-![Example chart - distance and kcals](/example/rower-2021-03-29.csv-distance-cals.png")
-![Example chart - spm and heartrate](/example/rower-2021-03-29.csv-spm-heartrate.png")
+![Example chart - speed and SPM](/example/rower-2021-03-29.csv-speed-spm.png)
+![Example chart - SPM and power](/example/rower-2021-03-29.csv-spm-power.png)
+![Example chart - distance and kcals](/example/rower-2021-03-29.csv-distance-cals.png)
+![Example chart - spm and heartrate](/example/rower-2021-03-29.csv-spm-heartrate.png)
 
 
 
