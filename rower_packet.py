@@ -1,4 +1,4 @@
-# This file is part of the fdf-rover package (https://github.com/Mrkvak/fdf-rover).
+# This file is part of the fdf-rower package (https://github.com/Mrkvak/fdf-rower).
 # Copyright (c) 2021 Radek Pilar.
 # 
 # This program is free software: you can redistribute it and/or modify  

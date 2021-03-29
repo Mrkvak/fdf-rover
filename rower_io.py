@@ -1,4 +1,4 @@
-# This file is part of the fdf-rover package (https://github.com/Mrkvak/fdf-rover).
+# This file is part of the fdf-rower package (https://github.com/Mrkvak/fdf-rower).
 # Copyright (c) 2021 Radek Pilar.
 # 
 # This program is free software: you can redistribute it and/or modify  
@@ -16,11 +16,11 @@
 
 
 import serial
-import rover_packet
+import rower_packet
 import threading
 import time
 
-from rover_packet import Connect_Packet,Generic_Packet
+from rower_packet import Connect_Packet,Generic_Packet
 
 from debug_print import Debug
 

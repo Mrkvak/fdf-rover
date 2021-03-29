@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# This file is part of the fdf-rover package (https://github.com/Mrkvak/fdf-rover).
+# This file is part of the fdf-rower package (https://github.com/Mrkvak/fdf-rower).
 # Copyright (c) 2021 Radek Pilar.
 # 
 # This program is free software: you can redistribute it and/or modify  
@@ -23,8 +23,8 @@ import datetime
 import sys
 import getopt
 
-from rover_io import *
-from rover_packet import *
+from rower_io import *
+from rower_packet import *
 from debug_print import Debug
 
 class Keepalive_Responder:
